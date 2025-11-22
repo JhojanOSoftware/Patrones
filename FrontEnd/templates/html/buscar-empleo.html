@@ -114,56 +114,6 @@
 
     <script src="/BackEnd/JS/js/api-service.js"></script>
     <script src="/BackEnd/JS/js/buscar-empleo.js"></script>
-
-        <!-- EMERGENCY INLINE INJECTION: render sample offers directly into the page -->
-        <script>
-            (function(){
-                try {
-                    // If the dynamic loader works it will already show offers. This inline script forces the sample data.
-                    const LOCAL_OFFERS = [
-                        {"id":6,"titulo":"Desarrollador Frontend React","empresa":"Tech Solutions SAS","sector":"Tecnología","descripcion":"Buscamos desarrollador frontend con experiencia en React para unirse a nuestro equipo de innovación.","funciones":"Desarrollar interfaces de usuario, colaborar con equipo backend, optimizar performance","requisitos":"Experiencia mínima 1 año en React, conocimientos en JavaScript ES6+","habilidadesRequeridas":["React","JavaScript","CSS","HTML","Git"],"ubicacion":"Bogotá","modalidad":"Hibrido","tipoContrato":"Término Indefinido","jornada":"Tiempo Completo","salarioMin":2800000.0,"salarioMax":3500000.0,"fechaPublicacion":"2025-11-20 18:48:40","fechaCierre":null},
-                        {"id":7,"titulo":"Programador de software","empresa":"Tech Solutions SAS","sector":"Tecnología","descripcion":"Desarrollo de aplicaciones web y móviles para clientes internacionales","funciones":"Desarrollar features, escribir tests, participar en code reviews","requisitos":"Conocimientos en patrones de diseño, bases de datos, APIs REST","habilidadesRequeridas":["Java","Spring Boot","SQL","AWS"],"ubicacion":"Bogotá","modalidad":"Remoto","tipoContrato":"Término Indefinido","jornada":"Tiempo Completo","salarioMin":2500000.0,"salarioMax":3000000.0,"fechaPublicacion":"2025-11-20 18:48:40","fechaCierre":null},
-                        {"id":8,"titulo":"Desarrollador FullStack Python","empresa":"Innovación Digital Ltda","sector":"Desarrollo Software","descripcion":"Desarrollo de aplicaciones web completas con Django y React","funciones":"Desarrollo backend con Django, frontend con React, deployment en cloud","requisitos":"Experiencia con Django REST Framework, React, bases de datos relacionales","habilidadesRequeridas":["Python","Django","React","PostgreSQL","Docker"],"ubicacion":"Medellín","modalidad":"Presencial","tipoContrato":"Término Fijo","jornada":"Tiempo Completo","salarioMin":3000000.0,"salarioMax":4000000.0,"fechaPublicacion":"2025-11-20 18:48:40","fechaCierre":null},
-                        {"id":9,"titulo":"Analista de Datos Junior","empresa":"Desarrollo Web Colombia","sector":"Tecnología","descripcion":"Análisis de datos empresariales y creación de reportes","funciones":"Extraer y analizar datos, crear dashboards, reportes ejecutivos","requisitos":"Conocimientos en SQL, Excel, Python para análisis de datos","habilidadesRequeridas":["SQL","Python","Excel","Power BI","Estadística"],"ubicacion":"Cali","modalidad":"Hibrido","tipoContrato":"Término Indefinido","jornada":"Medio Tiempo","salarioMin":1800000.0,"salarioMax":2200000.0,"fechaPublicacion":"2025-11-20 18:48:40","fechaCierre":null},
-                        {"id":5,"titulo":"barredor","empresa":"Tech Solutions SAS","sector":"Tecnología","descripcion":"barrer","funciones":"barrer","requisitos":"escoba","habilidadesRequeridas":[],"ubicacion":"Bogota, Colombia","modalidad":"Presencial","tipoContrato":"Termino indefinido","jornada":"Tiempo Completo","salarioMin":1000000.0,"salarioMax":50000000.0,"fechaPublicacion":"2025-10-29 01:17:54","fechaCierre":null},
-                        {"id":1,"titulo":"Desarrollador Frontend React","empresa":"Tech Solutions SAS","sector":"Tecnología","descripcion":"Buscamos desarrollador frontend con experiencia en React para unirse a nuestro equipo de innovación.","funciones":"Desarrollar interfaces de usuario, colaborar con equipo backend, optimizar performance","requisitos":"Experiencia mínima 1 año en React, conocimientos en JavaScript ES6+","habilidadesRequeridas":["React","JavaScript","CSS","HTML","Git"],"ubicacion":"Bogotá","modalidad":"Hibrido","tipoContrato":"Término Indefinido","jornada":"Tiempo Completo","salarioMin":2800000.0,"salarioMax":3500000.0,"fechaPublicacion":"2025-10-27 01:51:21","fechaCierre":null},
-                        {"id":2,"titulo":"Programador de software","empresa":"Tech Solutions SAS","sector":"Tecnología","descripcion":"Desarrollo de aplicaciones web y móviles para clientes internacionales","funciones":"Desarrollar features, escribir tests, participar en code reviews","requisitos":"Conocimientos en patrones de diseño, bases de datos, APIs REST","habilidadesRequeridas":["Java","Spring Boot","SQL","AWS"],"ubicacion":"Bogotá","modalidad":"Remoto","tipoContrato":"Término Indefinido","jornada":"Tiempo Completo","salarioMin":2500000.0,"salarioMax":3000000.0,"fechaPublicacion":"2025-10-27 01:51:21","fechaCierre":null},
-                        {"id":3,"titulo":"Desarrollador FullStack Python","empresa":"Innovación Digital Ltda","sector":"Desarrollo Software","descripcion":"Desarrollo de aplicaciones web completas con Django y React","funciones":"Desarrollo backend con Django, frontend con React, deployment en cloud","requisitos":"Experiencia con Django REST Framework, React, bases de datos relacionales","habilidadesRequeridas":["Python","Django","React","PostgreSQL","Docker"],"ubicacion":"Medellín","modalidad":"Presencial","tipoContrato":"Término Fijo","jornada":"Tiempo Completo","salarioMin":3000000.0,"salarioMax":4000000.0,"fechaPublicacion":"2025-10-27 01:51:21","fechaCierre":null},
-                        {"id":4,"titulo":"Analista de Datos Junior","empresa":"Desarrollo Web Colombia","sector":"Tecnología","descripcion":"Análisis de datos empresariales y creación de reportes","funciones":"Extraer y analizar datos, crear dashboards, reportes ejecutivos","requisitos":"Conocimientos en SQL, Excel, Python para análisis de datos","habilidadesRequeridas":["SQL","Python","Excel","Power BI","Estadística"],"ubicacion":"Cali","modalidad":"Hibrido","tipoContrato":"Término Indefinido","jornada":"Medio Tiempo","salarioMin":1800000.0,"salarioMax":2200000.0,"fechaPublicacion":"2025-10-27 01:51:21","fechaCierre":null}
-                    ];
-
-                    function e(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;'); }
-
-                    const container = document.getElementById('job-offers-container');
-                    const resultsCount = document.getElementById('resultadosCount');
-                    if (container) {
-                        container.innerHTML = LOCAL_OFFERS.map(oferta => `
-                            <div class="job-card" data-offer-id="${oferta.id}">
-                                <div class="job-header">
-                                    <h3 class="job-title">${e(oferta.titulo)}</h3>
-                                    <p class="company-name">${e(oferta.empresa)}</p>
-                                </div>
-                                <p class="job-description">${e(oferta.descripcion)}</p>
-                                <div class="job-details">
-                                    <div class="detail-item"><strong>📍 Ubicación:</strong> ${e(oferta.ubicacion)}</div>
-                                    <div class="detail-item"><strong>🏢 Modalidad:</strong> ${e(oferta.modalidad)}</div>
-                                    <div class="detail-item"><strong>📄 Contrato:</strong> ${e(oferta.tipoContrato || oferta.tipo_contrato || '')}</div>
-                                    <div class="detail-item"><strong>💰 Salario:</strong> $${Number(oferta.salarioMin||oferta.salario_min||0).toLocaleString()} - $${Number(oferta.salarioMax||oferta.salario_max||0).toLocaleString()}</div>
-                                </div>
-                                <div class="job-skills"><strong>🛠️ Habilidades:</strong>
-                                    <div class="skills-tags">${Array.isArray(oferta.habilidadesRequeridas) && oferta.habilidadesRequeridas.length ? oferta.habilidadesRequeridas.map(s => `<span class="skill-tag">${e(s)}</span>`).join('') : '<span>No especificadas</span>'}</div>
-                                </div>
-                                <div class="job-footer">
-                                    <span class="publish-date">Publicado: ${e(oferta.fechaPublicacion || oferta.fecha_publicacion || '')}</span>
-                                    <button class="view-details-btn" onclick="(function(){ window.location.href = '/ofertas/' + ${oferta.id}; })()">Ver Detalle</button>
-                                </div>
-                            </div>
-                        `).join('');
-                        if (resultsCount) resultsCount.textContent = LOCAL_OFFERS.length + ' ofertas encontradas';
-                    }
-                } catch(err){ console.error('Error injecting local offers', err); }
-            })();
-        </script>
 </body>
 
 </html>

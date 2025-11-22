@@ -4,16 +4,16 @@
 
 const API_CONFIG = {
     // Cambiar a true cuando tengas backend
-    USE_API: false,
+    USE_API: true, // ✅ Cambiado a true para usar el backend
 
-    // URL base de tu API (cambiar cuando tengas backend)
-    BASE_URL: 'http://localhost:3000/api',
+    // URL base de tu API (FastAPI corre en puerto 8000 por defecto)
+    BASE_URL: 'http://127.0.0.1:8000',
 
     // Endpoints
     ENDPOINTS: {
-        OFERTAS: '/ofertas',
-        OFERTA_BY_ID: (id) => `/ofertas/${id}`,
-        POSTULACIONES: '/postulaciones'
+        OFERTAS: '/api/ofertas',
+        OFERTA_BY_ID: (id) => `/api/ofertas/${id}`,
+        POSTULACIONES: '/api/postulaciones'
     },
 
     // Timeout para peticiones
@@ -44,7 +44,12 @@ class OfertasService {
                 }
 
                 const data = await response.json();
-                return data.ofertas || data; // Adaptar según respuesta del backend
+                // Mapear campos del backend al formato esperado por el frontend
+                const ofertas = (data.ofertas || data).map(oferta => ({
+                    ...oferta,
+                    responsabilidades: oferta.funciones || oferta.responsabilidades || 'No especificado'
+                }));
+                return ofertas;
             } else {
                 // Modo LocalStorage (Sin Backend)
                 return this._getFromLocalStorage();
@@ -71,8 +76,12 @@ class OfertasService {
                     throw new Error(`Error HTTP: ${response.status}`);
                 }
 
-                const data = await response.json();
-                return data.oferta || data;
+                const oferta = await response.json();
+                // Asegurar que el campo responsabilidades esté presente
+                return {
+                    ...oferta,
+                    responsabilidades: oferta.responsabilidades || oferta.funciones || 'No especificado'
+                };
             } else {
                 // Modo LocalStorage
                 const ofertas = this._getFromLocalStorage();
@@ -200,7 +209,13 @@ class OfertasService {
     async registrarPostulacion(ofertaId, datosPostulante = {}) {
         try {
             if (this.useAPI) {
-                // Modo API
+                // Obtener usuario_id de la sesión
+                const session = JSON.parse(localStorage.getItem("session"));
+                if (!session || !session.user_id) {
+                    throw new Error('No estás logueado. Por favor, inicia sesión primero.');
+                }
+
+                // Modo API - el backend espera usuario_id y oferta_id
                 const response = await this._fetchWithTimeout(
                     `${this.baseURL}${API_CONFIG.ENDPOINTS.POSTULACIONES}`, {
                         method: 'POST',
@@ -208,19 +223,19 @@ class OfertasService {
                             'Content-Type': 'application/json'
                         },
                         body: JSON.stringify({
-                            ofertaId,
-                            ...datosPostulante,
-                            fecha: new Date().toISOString()
+                            usuario_id: session.user_id,
+                            oferta_id: ofertaId
                         })
                     }
                 );
 
                 if (!response.ok) {
-                    throw new Error(`Error HTTP: ${response.status}`);
+                    const errorData = await response.json().catch(() => ({}));
+                    throw new Error(errorData.detail || `Error HTTP: ${response.status}`);
                 }
 
                 const data = await response.json();
-                return data.postulacion || data;
+                return data;
             } else {
                 // Modo LocalStorage
                 const oferta = await this.obtenerOfertaPorId(ofertaId);
@@ -248,7 +263,7 @@ class OfertasService {
             }
         } catch (error) {
             console.error('Error al registrar postulación:', error);
-            throw new Error('No se pudo registrar la postulación. Intenta de nuevo.');
+            throw error; // Lanzar el error original para mejor manejo
         }
     }
 

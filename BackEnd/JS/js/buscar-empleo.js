@@ -262,8 +262,8 @@ async function applyToJob(jobId) {
 // ----------------------
 console.log('🚀 INICIANDO CARGA DE OFERTAS (loader alternativo)...');
 // If you want to force using the provided sample JSON instead of fetching from the API,
-// set FORCE_SAMPLE = true. This helps when the frontend can't reach the backend.
-const FORCE_SAMPLE = true;
+// set FORCE_SAMPLE = true. Default is false to use live API data from `/api/ofertas`.
+const FORCE_SAMPLE = false;
 
 // Sample data provided by the user (9 ofertas) - used when FORCE_SAMPLE=true
 const SAMPLE_DATA = {
