@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Postulaciones - CEO</title>
+    <link rel="stylesheet" href="/FrontEnd/Estilos/css/post.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">
+                <i class=""></i> CEO
+            </h1>
+            <nav class="nav">
+                <a href="ver-postulaciones.htmL" class="nav-link active">Mis Postulaciones</a>
+                <a href="../../templates/html/buscar-empleo.html" class="nav-link">Buscar Empleos</a>
+                <a href="#" class="nav-link link-mi-perfil">Mi Perfil</a>
+                <button id="btn-cerrar-sesion" class="nav-link btn-cerrar-sesion" style="background: none; border: none; color: inherit; cursor: pointer; padding: 0.5rem 1rem; font-size: inherit; font-family: inherit;">
+                    <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="page-header">
+                <h2>Mis Postulaciones</h2>
+                <div class="filters">
+                    <select id="statusFilter" class="filter-select">
+                        <option value="all">Todas las postulaciones</option>
+                        <option value="Registrada">Registrada</option>
+                        <option value="En progreso">En progreso</option>
+                        <option value="Aprobada">Aprobada</option>
+                        <option value="Rechazada">Rechazada</option>
+                        <option value="Cancelada">Cancelada</option>
+                    </select>
+                    <div class="stats">
+                        <span class="stat-item">
+                            <strong id="totalCount">0</strong> postulaciones
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Postulaciones List -->
+            <div class="postulaciones-grid">
+                <!-- Left Column: List of Applications -->
+                <div class="postulaciones-list">
+                    <div id="postulacionesContainer" class="postulaciones-container">
+                        <!-- Las postulaciones se cargarán aquí dinámicamente -->
+                    </div>
+                </div>
+
+                <!-- Right Column: Status and Details -->
+                <div class="status-panel">
+                    <div id="statusContent" class="status-content">
+                        <div class="empty-state">
+                            <i class="fas fa-briefcase"></i>
+                            <h3>Selecciona una postulación</h3>
+                            <p>Haz clic en una postulación para ver los detalles y el estado del proceso</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Templates -->
+    <template id="postulacionTemplate">
+        <div class="postulacion-card" data-id="">
+            <div class="postulacion-header">
+                <h3 class="puesto-title">Programador de software</h3>
+                <span class="fecha-postulacion">Postulado: 20 Oct 2025</span>
+            </div>
+            <div class="empresa-info">
+                <span class="empresa-nombre">GESTION COMPITITIVA SAS</span>
+                <span class="empresa-ubicacion">
+                    <i class="fas fa-map-marker-alt"></i>
+                    Bogotá
+                </span>
+            </div>
+            <div class="postulacion-tags">
+                <span class="tag programador">programador web</span>
+                <span class="tag ingenieria">ingeniería de software</span>
+            </div>
+            <div class="postulacion-footer">
+                <span class="salario">$2,5 a $3 millones</span>
+                <div class="status-indicator">
+                    <span class="status-badge" data-status="Registrada">Registrada</span>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="statusPanelTemplate">
+        <div class="status-details">
+            <div class="status-header">
+                <h3>Estado de la Postulación</h3>
+                <button id="cancelPostulacion" class="btn-cancel" style="display: none;">
+                    <i class="fas fa-times"></i>
+                    Cancelar Postulación
+                </button>
+            </div>
+            
+            <div class="current-status">
+                <div class="status-display">
+                    <span class="status-badge large" data-status="">Registrada</span>
+                    <span class="status-date">Actualizado: 20 Oct 2025</span>
+                </div>
+            </div>
+
+            <div class="status-timeline">
+                <h4>Historial del Proceso</h4>
+                <div class="timeline">
+                    <!-- Los eventos del timeline se cargarán dinámicamente -->
+                </div>
+            </div>
+
+            <div class="postulacion-detalles">
+                <h4>Detalles de la Oferta</h4>
+                <div class="detalle-item">
+                    <strong>Empresa:</strong>
+                    <span class="detalle-empresa">GESTION COMPITITIVA SAS</span>
+                </div>
+                <div class="detalle-item">
+                    <strong>Puesto:</strong>
+                    <span class="detalle-puesto">Programador de software</span>
+                </div>
+                <div class="detalle-item">
+                    <strong>Ubicación:</strong>
+                    <span class="detalle-ubicacion">Bogotá</span>
+                </div>
+                <div class="detalle-item">
+                    <strong>Salario:</strong>
+                    <span class="detalle-salario">$2,5 a $3 millones</span>
+                </div>
+                <div class="detalle-item">
+                    <strong>Publicado:</strong>
+                    <span class="detalle-fecha">20 Oct 2025</span>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="timelineEventTemplate">
+        <div class="timeline-event">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+                <div class="timeline-status">
+                    <span class="status-badge small" data-status="">Registrada</span>
+                </div>
+                <div class="timeline-info">
+                    <span class="timeline-desc">Postulación registrada en el sistema</span>
+                    <span class="timeline-date">20 Oct 2025 - 10:30 AM</span>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <script src="/BackEnd/JS/js/navegacion-perfil.js"></script>
+    <script src="/BackEnd/JS/js/cerrar-sesion.js"></script>
+    <script src="/BackEnd/JS/js/scp1post.js"></script>
+</body>
+
+</html>

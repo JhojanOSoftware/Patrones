@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Crear Curso - TechSolutions SAS</title>
+    <link rel="stylesheet" href="/FrontEnd/Estilos/css/estilos.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Crear Curso - TechSolutions SAS</h1>
+        <form id="crear-curso-form">
+            <div>
+                <label>Título (requerido)</label>
+                <input type="text" id="titulo" required />
+            </div>
+            <div>
+                <label>Descripción (requerido)</label>
+                <textarea id="descripcion" required></textarea>
+            </div>
+            <div>
+                <label>Duración estimada (horas)</label>
+                <input type="number" id="duracion" min="1" value="10" />
+            </div>
+            <div>
+                <label>Nivel</label>
+                <select id="nivel">
+                    <option value="basico">Básico</option>
+                    <option value="intermedio">Intermedio</option>
+                    <option value="avanzado">Avanzado</option>
+                </select>
+            </div>
+            <div style="margin-top:1rem">
+                <button type="submit" class="btn btn-primary">Crear Curso</button>
+            </div>
+        </form>
+        <div id="crear-curso-result" style="margin-top:1rem"></div>
+    </div>
+
+    <script src="/BackEnd/JS/js/crear-curso.js"></script>
+</body>
+</html>

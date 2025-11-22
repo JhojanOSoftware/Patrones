@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Perfil de Empresa - CEO</title>
+
+  <!-- Iconos y estilos -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/FrontEnd/Estilos/css/perfiles.css">
+  <link rel="stylesheet" href="/FrontEnd/Estilos/css/mi-perfil.css">
+  <style>
+    :root {
+      --header-height: 88px;
+    }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: var(--color-bg, #f8f9fa);
+      color: var(--color-text, #2c3e50);
+    }
+    main.perfil-container {
+      margin-top: var(--header-height);
+    }
+    .verificada-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: #d4edda;
+      color: #155724;
+      border-radius: 20px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-left: 1rem;
+    }
+    .verificada-badge i {
+      color: #28a745;
+    }
+    .no-verificada-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: #fff3cd;
+      color: #856404;
+      border-radius: 20px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-left: 1rem;
+    }
+    .oferta-card-mini {
+      background: var(--color-white, #fff);
+      padding: 1rem;
+      border-radius: 8px;
+      border-left: 4px solid var(--color-primary, #4a7c59);
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .oferta-card-mini h4 {
+      margin: 0 0 0.5rem 0;
+      color: var(--color-text, #2c3e50);
+    }
+    .oferta-card-mini .oferta-meta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      font-size: 0.875rem;
+      color: var(--color-text-light, #6c757d);
+    }
+    .oferta-card-mini .badge-activa {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      background: #d4edda;
+      color: #155724;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .oferta-card-mini .badge-inactiva {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      background: #f8d7da;
+      color: #721c24;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="header site-header">
+    <div class="container header-inner">
+      <h1 class="logo">CEO</h1>
+      <nav class="main-nav nav" role="navigation" aria-label="Principal">
+        <a href="/FrontEnd/templates/html/crear-oferta.html" class="nav-link">Crear Oferta</a>
+        <a href="#" class="nav-link" id="btn-publicar-curso">Publicar Curso</a>
+        <a href="#" class="nav-link active link-mi-perfil">Mi Perfil</a>
+        <button id="btn-cerrar-sesion" class="nav-link btn-cerrar-sesion" style="background: none; border: none; color: inherit; cursor: pointer; padding: 0.5rem 1rem; font-size: inherit; font-family: inherit;">
+          <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="perfil-container" id="app" aria-live="polite">
+    <!-- SIDEBAR IZQUIERDO -->
+    <aside class="perfil-sidebar" id="sidebar" aria-labelledby="perfil-title">
+      <div class="perfil-header">
+        <div class="avatar" id="avatar" aria-hidden="true">
+          <i class="fas fa-building"></i>
+        </div>
+        <div class="perfil-info">
+          <h2 id="display-razon-social">Nombre de Empresa</h2>
+          <p id="display-verificacion" class="perfil-rol">
+            <i class="fas fa-briefcase"></i> Empresa
+          </p>
+          <p class="perfil-location" id="display-ubicacion">
+            <i class="fas fa-map-marker-alt"></i> Ubicación
+          </p>
+        </div>
+      </div>
+
+      <div class="perfil-actions">
+        <a href="/FrontEnd/templates/html/crear-oferta.html" class="btn primary" style="text-decoration: none; display: block; text-align: center; margin-bottom: 0.75rem;">
+          <i class="fas fa-briefcase"></i> Crear Nueva Oferta
+        </a>
+        <button class="btn primary" id="btn-publicar-curso-sidebar" type="button" style="width: 100%; margin-bottom: 0.75rem;">
+          <i class="fas fa-graduation-cap"></i> Publicar Curso
+        </button>
+        <button class="btn" id="btn-editar" type="button" style="width: 100%;">
+          <i class="fas fa-edit"></i> Editar perfil
+        </button>
+      </div>
+
+      <div class="divider"></div>
+
+      <div id="estadisticas-section" aria-labelledby="estadisticas-title">
+        <h3 id="estadisticas-title" class="section-title-sidebar">
+          <i class="fas fa-chart-bar"></i> Estadísticas
+        </h3>
+        <div class="estadisticas-container">
+          <div class="stat-item">
+            <span class="stat-value" id="stat-ofertas">0</span>
+            <span class="stat-label">Ofertas Activas</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value" id="stat-cursos">0</span>
+            <span class="stat-label">Cursos Publicados</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <section class="perfil-content" id="contenido-principal">
+      <div class="section-header">
+        <i class="fas fa-building"></i>
+        <h1 id="perfil-title">Información de la Empresa</h1>
+      </div>
+
+      <div class="perfil-grid" id="datos-empresa" role="region" aria-labelledby="perfil-title">
+        <div class="field-card">
+          <label class="field-label">
+            <i class="fas fa-building"></i> Razón Social
+          </label>
+          <p id="dp-razon-social" class="field-value">-</p>
+        </div>
+        <div class="field-card">
+          <label class="field-label">
+            <i class="fas fa-id-card"></i> NIT
+          </label>
+          <p id="dp-nit" class="field-value">-</p>
+        </div>
+        <div class="field-card">
+          <label class="field-label">
+            <i class="fas fa-file-alt"></i> RUT
+          </label>
+          <p id="dp-rut" class="field-value field-empty">No registrado</p>
+        </div>
+        <div class="field-card">
+          <label class="field-label">
+            <i class="fas fa-industry"></i> Sector
+          </label>
+          <p id="dp-sector" class="field-value field-empty">No especificado</p>
+        </div>
+        <div class="field-card">
+          <label class="field-label">
+            <i class="fas fa-map-marker-alt"></i> Dirección
+          </label>
+          <p id="dp-direccion" class="field-value field-empty">No registrada</p>
+        </div>
+        <div class="field-card">
+          <label class="field-label">
+            <i class="fas fa-phone"></i> Teléfono
+          </label>
+          <p id="dp-telefono" class="field-value field-empty">No registrado</p>
+        </div>
+        <div class="field-card">
+          <label class="field-label">
+            <i class="fas fa-globe"></i> Sitio Web
+          </label>
+          <p id="dp-sitio-web" class="field-value field-empty">No registrado</p>
+        </div>
+        <div class="field-card">
+          <label class="field-label">
+            <i class="fas fa-briefcase"></i> Actividad Económica
+          </label>
+          <p id="dp-actividad" class="field-value field-empty">No especificada</p>
+        </div>
+        <div class="field-card">
+          <label class="field-label">
+            <i class="fas fa-users"></i> Tamaño de Empresa
+          </label>
+          <p id="dp-tamano" class="field-value field-empty">No especificado</p>
+        </div>
+        <div class="field-card">
+          <label class="field-label">
+            <i class="fas fa-envelope"></i> Correo Electrónico
+          </label>
+          <p id="dp-email" class="field-value">
+            <a href="#" id="email-link" class="field-link">-</a>
+          </p>
+        </div>
+        <div class="field-card">
+          <label class="field-label">
+            <i class="fas fa-share-alt"></i> Redes Sociales
+          </label>
+          <div id="dp-redes-sociales" class="field-value">
+            <p class="field-empty">No registradas</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-header">
+        <i class="fas fa-briefcase"></i>
+        <h1>Ofertas Publicadas</h1>
+      </div>
+      <div id="ofertas-list" class="perfil-list" aria-live="polite">
+        <div class="empty-state">
+          <i class="fas fa-briefcase"></i>
+          <p>No hay ofertas publicadas</p>
+        </div>
+      </div>
+
+      <div class="section-header">
+        <i class="fas fa-graduation-cap"></i>
+        <h1>Cursos Publicados</h1>
+      </div>
+      <div id="cursos-list" class="perfil-list" aria-live="polite">
+        <div class="empty-state">
+          <i class="fas fa-book-open"></i>
+          <p>No hay cursos publicados</p>
+        </div>
+      </div>
+
+      <div class="section-header">
+        <i class="fas fa-user-check"></i>
+        <h1>Postulaciones a Mis Ofertas</h1>
+      </div>
+      <div id="postulaciones-list" class="perfil-list" aria-live="polite">
+        <div class="empty-state">
+          <i class="fas fa-file-alt"></i>
+          <p>No hay postulaciones recibidas</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2025 CEO Platform — Create, Educate & Organize | Promovemos inclusión y diversidad laboral
+  </footer>
+
+  <script src="/BackEnd/JS/js/navegacion-perfil.js"></script>
+  <script src="/BackEnd/JS/js/cerrar-sesion.js"></script>
+  <script src="/BackEnd/JS/js/perfil-empresa.js"></script>
+  <script>
+    // Manejar clic en botones de "Publicar Curso"
+    document.addEventListener('DOMContentLoaded', () => {
+      const btnPublicarCursoHeader = document.getElementById('btn-publicar-curso');
+      const btnPublicarCursoSidebar = document.getElementById('btn-publicar-curso-sidebar');
+      
+      function irAPublicarCurso() {
+        window.location.href = '/FrontEnd/templates/html/publicacion-curso-empresa.html';
+      }
+      
+      if (btnPublicarCursoHeader) {
+        btnPublicarCursoHeader.addEventListener('click', (e) => {
+          e.preventDefault();
+          irAPublicarCurso();
+        });
+      }
+      
+      if (btnPublicarCursoSidebar) {
+        btnPublicarCursoSidebar.addEventListener('click', (e) => {
+          e.preventDefault();
+          irAPublicarCurso();
+        });
+      }
+    });
+  </script>
+</body>
+</html>
+

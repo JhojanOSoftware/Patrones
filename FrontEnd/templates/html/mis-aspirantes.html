@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mis Aspirantes - TechSolutions SAS</title>
+    <link rel="stylesheet" href="/FrontEnd/Estilos/css/estilos.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Mis Aspirantes - TechSolutions SAS</h1>
+        <p>Aquí aparecen los aspirantes que han aplicado a tus ofertas.</p>
+
+        <div id="aspirantesSection">
+            <table id="aspirantes-table" style="width:100%; border-collapse:collapse;">
+                <thead>
+                    <tr>
+                        <th style="border:1px solid #ddd;padding:8px">Nombre</th>
+                        <th style="border:1px solid #ddd;padding:8px">Email</th>
+                        <th style="border:1px solid #ddd;padding:8px">Puesto Aplicado</th>
+                        <th style="border:1px solid #ddd;padding:8px">Fecha</th>
+                        <th style="border:1px solid #ddd;padding:8px">Estado</th>
+                        <th style="border:1px solid #ddd;padding:8px">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="aspirantes-body"></tbody>
+            </table>
+            <div id="aspirantes-empty" style="display:none; margin-top:1rem">
+                <p>No hay aspirantes aún. Se mostrarán datos de ejemplo.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="/BackEnd/JS/js/mis-aspirantes.js"></script>
+</body>
+</html>

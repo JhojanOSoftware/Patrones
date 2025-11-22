@@ -1,0 +1,5 @@
+/* Shim stylesheet for perfiles pages */
+@import url("../post.css");
+
+/* Additional small tweaks for perfiles (placeholder) */
+body { background-color: #fff; }

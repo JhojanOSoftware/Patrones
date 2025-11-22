@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publicar Curso - CEO</title>
+    <link rel="stylesheet" href="/FrontEnd/Estilos/css/estilos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="page-header">
+            <h1>Publicar Nuevo Curso</h1>
+            <a href="perfil-empresa.html" class="btn-back">← Volver al perfil</a>
+        </header>
+
+        <div class="form-container">
+            <form id="formCrearCurso">
+                <div class="form-group">
+                    <label for="titulo">Título del Curso *</label>
+                    <input type="text" id="titulo" name="titulo" placeholder="Ej: Introducción a React" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="descripcion">Descripción *</label>
+                    <textarea id="descripcion" name="descripcion" rows="4" placeholder="Describe el curso, qué aprenderán los estudiantes..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="objetivos">Objetivos del Curso</label>
+                    <textarea id="objetivos" name="objetivos" rows="3" placeholder="Lista los objetivos de aprendizaje del curso..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="temario">Temario</label>
+                    <textarea id="temario" name="temario" rows="5" placeholder="Lista los temas que se cubrirán en el curso (uno por línea o separados por comas)..."></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="duracion">Duración Estimada (horas) *</label>
+                        <input type="number" id="duracion" name="duracion" placeholder="20" min="1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nivelDificultad">Nivel de Dificultad *</label>
+                        <select id="nivelDificultad" name="nivelDificultad" required>
+                            <option value="">Selecciona...</option>
+                            <option value="basico">Básico</option>
+                            <option value="intermedio">Intermedio</option>
+                            <option value="avanzado">Avanzado</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="visibilidad">Visibilidad *</label>
+                        <select id="visibilidad" name="visibilidad" required>
+                            <option value="publico">Público (visible para todos)</option>
+                            <option value="privado">Privado (solo para postulantes)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="formatoContenido">Formato de Contenido</label>
+                        <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.5rem;">
+                            <label style="display: flex; align-items: center; gap: 0.5rem; font-weight: normal;">
+                                <input type="checkbox" name="formato" value="video"> Video
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem; font-weight: normal;">
+                                <input type="checkbox" name="formato" value="documentos"> Documentos
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem; font-weight: normal;">
+                                <input type="checkbox" name="formato" value="ejercicios"> Ejercicios
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem; font-weight: normal;">
+                                <input type="checkbox" name="formato" value="codigo"> Código
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem; font-weight: normal;">
+                                <input type="checkbox" name="formato" value="quices"> Quices
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem; font-weight: normal;">
+                                <input type="checkbox" name="formato" value="proyectos"> Proyectos
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="ofertaAsociada">Oferta Asociada (Opcional)</label>
+                    <input type="number" id="ofertaAsociada" name="ofertaAsociada" placeholder="ID de la oferta (si aplica)" min="1">
+                    <small style="color: var(--color-text-light); font-size: 0.875rem; display: block; margin-top: 0.25rem;">
+                        Si este curso está relacionado con una oferta de empleo específica, ingresa su ID
+                    </small>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Publicar Curso</button>
+                    <button type="reset" class="btn btn-secondary">Limpiar Formulario</button>
+                </div>
+            </form>
+
+            <div id="mensaje" class="mensaje"></div>
+        </div>
+    </div>
+
+    <script src="../../../BackEnd/JS/js/cursos.js"></script>
+</body>
+</html>
+

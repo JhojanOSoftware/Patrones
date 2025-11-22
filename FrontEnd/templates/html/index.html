@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CEO - Plataforma Inclusiva de Empleo</title>
+
+  <!-- Estilos globales -->
+  <link rel="stylesheet" href="/FrontEnd/Estilos/css/estilos.css">
+  <link rel="stylesheet" href="/FrontEnd/Estilos/css/index.css">
+</head>
+
+<body>
+  <!-- HEADER dinámico insertado por JS -->
+  <div id="ceo-header"></div>
+
+  <!-- Dashboard - diseño de dos columnas -->
+  <div class="dashboard-grid container">
+    <!-- Left panel: navegación, filtros y accesos rápidos -->
+    <aside id="left-panel" class="left-panel">
+      <!-- contenido dinámico insertado por JS -->
+    </aside>
+
+    <!-- Right panel: hero, buscador, recomendaciones, cursos -->
+    <section id="right-panel" class="right-panel">
+      <!-- HERO -->
+      <section class="hero">
+        <h1>Tu futuro comienza aquí</h1>
+        <p>Una plataforma inclusiva que conecta talento diverso con oportunidades reales.</p>
+
+        <form id="main-search" class="ceo-searchbarX" role="search" action="/ofertas">
+      <!-- Campo cargo -->
+      <label class="ceoX-field">
+        <span class="ceoX-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M9 6V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <rect x="3" y="7" width="18" height="12" rx="4" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M3 12h18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <input class="ceoX-input" type="text" name="cargo" placeholder="Cargo o categoría" autocomplete="off" />
+      </label>
+
+      <span class="ceoX-divider" aria-hidden="true"></span>
+
+      <!-- Campo lugar -->
+      <label class="ceoX-field">
+        <span class="ceoX-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M12 22s7-5.5 7-12a7 7 0 1 0-14 0c0 6.5 7 12 7 12Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.8"/>
+          </svg>
+        </span>
+        <input class="ceoX-input" type="text" name="lugar" placeholder="Lugar" autocomplete="off" />
+      </label>
+
+      <button class="ceoX-btn" type="submit">
+        <span class="ceoX-btn-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/>
+            <path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </span>
+        Buscar empleos
+      </button>
+    </form>
+      </section>
+
+      <!-- Recomendaciones -->
+      <section id="recommendations" class="detalle-section" style="margin-top:20px;">
+        <h2>Ofertas Recomendadas para Ti</h2>
+        <div id="recommendations-list" class="ofertas-grid">
+          <!-- Inserta tarjetas aquí desde index.js -->
+        </div>
+      </section>
+
+      <!-- SECCIÓN DE CURSOS -->
+      <section class="cursos-section" style="margin-top:20px;">
+        <div class="cursos-container">
+          <h2>¿Quieres aprender algún curso con nosotros?</h2>
+          <p>Explora nuestra oferta de cursos gratuitos y mejora tus habilidades profesionales</p>
+          <a href="/FrontEnd/templates/html/cursos.html" class="btn-cursos">
+            <i class="fas fa-graduation-cap"></i>
+            Ver Todos los Cursos
+          </a>
+        </div>
+      </section>
+    </section>
+  </div>
+
+  <!-- FOOTER -->
+  <!-- Scripts: header + page -->
+  <script src="/BackEnd/JS/js/header.js"></script>
+  <script src="/BackEnd/JS/js/index.js"></script>
+
+  <footer>
+    © 2025 CEO Platform — Create, Educate & Organize | Promovemos inclusión y diversidad laboral
+  </footer>
+</body>
+</html>

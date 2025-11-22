@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gestionar Ofertas - TechSolutions SAS</title>
+    <link rel="stylesheet" href="/FrontEnd/Estilos/css/estilos.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Gestionar Ofertas - TechSolutions SAS</h1>
+        <p>Lista de ofertas publicadas por la empresa con acciones de edición/activar/desactivar.</p>
+
+        <table id="ofertas-empresa-table" style="width:100%; border-collapse:collapse;">
+            <thead>
+                <tr>
+                    <th style="border:1px solid #ddd;padding:8px">ID</th>
+                    <th style="border:1px solid #ddd;padding:8px">Título</th>
+                    <th style="border:1px solid #ddd;padding:8px">Postulantes</th>
+                    <th style="border:1px solid #ddd;padding:8px">Fecha</th>
+                    <th style="border:1px solid #ddd;padding:8px">Activa</th>
+                    <th style="border:1px solid #ddd;padding:8px">Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="ofertas-empresa-body"></tbody>
+        </table>
+    </div>
+
+    <script src="/BackEnd/JS/js/gestionar-ofertas.js"></script>
+</body>
+</html>

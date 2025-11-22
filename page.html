@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar Empleo - Ofertas App</title>
+    <link rel="stylesheet" href="/FrontEnd/Estilos/css/estilos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <header class="page-header">
+            <h1>Buscar Empleo</h1>
+            <a href="mi-perfil.html" class="btn-back">← Volver a mi perfil</a>
+        </header>
+
+        <div class="search-section">
+            <div class="search-bar">
+                <input type="text" id="busqueda" placeholder="Buscar por título, empresa o descripción...">
+            </div>
+
+            <div class="filters">
+                <div class="filter-group">
+                    <label for="filtroUbicacion">Ubicación</label>
+                    <input type="text" id="filtroUbicacion" placeholder="Todas">
+                </div>
+
+                <div class="filter-group">
+                    <label for="filtroModalidad">Modalidad</label>
+                    <select id="filtroModalidad">
+                        <option value="">Todas</option>
+                        <option value="Presencial">Presencial</option>
+                        <option value="Hibrido">Híbrido</option>
+                        <option value="Remoto">Remoto</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="filtroContrato">Tipo de Contrato</label>
+                    <select id="filtroContrato">
+                        <option value="">Todos</option>
+                        <option value="Termino fijo">Término fijo</option>
+                        <option value="Termino indefinido">Término indefinido</option>
+                        <option value="Obra o Labor">Obra o Labor</option>
+                        <option value="Aprendizaje">Aprendizaje</option>
+                        <option value="Prestacion de Servicios">Prestación de Servicios</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="filtroSalarioMin">Salario Mínimo ($)</label>
+                    <input type="number" id="filtroSalarioMin" placeholder="0" min="0">
+                </div>
+            </div>
+        </div>
+
+        <div class="results-info">
+            <span id="resultadosCount">0 ofertas encontradas</span>
+        </div>
+
+        <div id="listaOfertas" class="ofertas-grid">
+            <!-- Las ofertas se cargarán dinámicamente aquí -->
+        </div>
+
+        <div id="noResults" class="no-results" style="display: none;">
+            <p>No se encontraron ofertas con los filtros seleccionados.</p>
+            <a href="crear-oferta.html" class="btn btn-primary">Crear nueva oferta</a>
+        </div>
+    </div>
+
+    <script src="/BackEnd/JS/js/api-service.js"></script>
+    <script src="/BackEnd/JS/js/buscar-empleo.js"></script>
+</body>
+
+</html>

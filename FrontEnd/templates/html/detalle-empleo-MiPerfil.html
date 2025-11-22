@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de Postulación - CEO</title>
+    <link rel="stylesheet" href="/FrontEnd/Estilos/css/estilos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .detalle-header {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            color: var(--color-white);
+            padding: 3rem 2rem;
+            margin-bottom: 2rem;
+            border-radius: var(--radius-lg);
+            position: relative;
+        }
+        .detalle-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        .detalle-header .meta-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 1rem;
+            font-size: 1rem;
+        }
+        .detalle-header .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .detalle-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .detalle-main {
+            background: var(--color-white);
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+        .detalle-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .info-card {
+            background: var(--color-white);
+            padding: 1.5rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--color-border);
+        }
+        .info-card h3 {
+            color: var(--color-text);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .info-card .info-item {
+            margin-bottom: 1rem;
+        }
+        .info-card .info-label {
+            font-weight: 600;
+            color: var(--color-text-light);
+            font-size: 0.875rem;
+            margin-bottom: 0.25rem;
+        }
+        .info-card .info-value {
+            color: var(--color-text);
+            font-size: 1rem;
+        }
+        .detalle-section {
+            margin-bottom: 2rem;
+        }
+        .detalle-section h2 {
+            color: var(--color-text);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .detalle-section p {
+            color: var(--color-text-light);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+        .detalle-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .tag {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-full);
+            font-size: 0.875rem;
+            color: var(--color-text);
+            font-weight: 500;
+        }
+        .postulacion-info {
+            background: var(--color-success-light, #d4edda);
+            border: 1px solid var(--color-success, #28a745);
+            border-radius: var(--radius-md);
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+        .postulacion-info h4 {
+            color: var(--color-success-dark, #155724);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .postulacion-info p {
+            color: var(--color-success-dark, #155724);
+            font-size: 0.875rem;
+            margin: 0.25rem 0;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--color-white);
+            text-decoration: none;
+            margin-bottom: 1rem;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-md);
+            transition: all var(--transition-base);
+        }
+        .btn-back:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        .loading {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--color-text-light);
+        }
+        .error {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+        .error h2 {
+            color: var(--color-danger);
+            margin-bottom: 1rem;
+        }
+        .error p {
+            color: var(--color-text-light);
+            margin-bottom: 1.5rem;
+        }
+        @media (max-width: 768px) {
+            .detalle-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="loading" class="loading">
+            <i class="fas fa-spinner fa-spin" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+            <p>Cargando información de la postulación...</p>
+        </div>
+
+        <div id="error" class="error" style="display: none;">
+            <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: var(--color-danger); margin-bottom: 1rem;"></i>
+            <h2>Error al cargar la postulación</h2>
+            <p id="errorMessage"></p>
+            <a href="/FrontEnd/templates/html/mi-perfil.html" class="btn btn-primary">
+                <i class="fas fa-arrow-left"></i> Volver a Mi Perfil
+            </a>
+        </div>
+
+        <div id="detalleContent" style="display: none;">
+            <div class="detalle-header">
+                <a href="/FrontEnd/templates/html/mi-perfil.html" class="btn-back">
+                    <i class="fas fa-arrow-left"></i> Volver a Mi Perfil
+                </a>
+                <h1 id="ofertaTitulo"></h1>
+                <div class="meta-info">
+                    <div class="meta-item">
+                        <i class="fas fa-building"></i>
+                        <span id="ofertaEmpresa"></span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span id="ofertaUbicacion"></span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-briefcase"></i>
+                        <span id="ofertaModalidad"></span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-dollar-sign"></i>
+                        <span id="ofertaSalario"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detalle-content">
+                <div class="detalle-main">
+                    <div class="detalle-section">
+                        <h2><i class="fas fa-info-circle"></i> Descripción</h2>
+                        <p id="ofertaDescripcion"></p>
+                    </div>
+
+                    <div class="detalle-section" id="funcionesSection" style="display: none;">
+                        <h2><i class="fas fa-tasks"></i> Funciones y Responsabilidades</h2>
+                        <div id="ofertaFunciones"></div>
+                    </div>
+
+                    <div class="detalle-section" id="requisitosSection" style="display: none;">
+                        <h2><i class="fas fa-check-circle"></i> Requisitos</h2>
+                        <div id="ofertaRequisitos"></div>
+                    </div>
+
+                    <div class="detalle-section" id="habilidadesSection" style="display: none;">
+                        <h2><i class="fas fa-tools"></i> Habilidades Requeridas</h2>
+                        <div class="detalle-tags" id="ofertaHabilidades"></div>
+                    </div>
+                </div>
+
+                <div class="detalle-sidebar">
+                    <div class="info-card">
+                        <h3><i class="fas fa-info-circle"></i> Información de la Oferta</h3>
+                        <div class="info-item">
+                            <div class="info-label">Modalidad</div>
+                            <div class="info-value" id="infoModalidad"></div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Tipo de Contrato</div>
+                            <div class="info-value" id="infoContrato"></div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Jornada</div>
+                            <div class="info-value" id="infoJornada"></div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Rango Salarial</div>
+                            <div class="info-value" id="infoSalario"></div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Fecha de Publicación</div>
+                            <div class="info-value" id="infoFechaPublicacion"></div>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <h3><i class="fas fa-building"></i> Empresa</h3>
+                        <div class="empresa-info" style="background: var(--color-bg-secondary); padding: 1rem; border-radius: var(--radius-md); margin-top: 1rem;">
+                            <h4 id="empresaNombre"></h4>
+                            <p id="empresaSector"></p>
+                            <p id="empresaDireccion"></p>
+                            <p id="empresaTelefono"></p>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="postulacion-info">
+                            <h4>
+                                <i class="fas fa-file-alt"></i> Estado de tu Postulación
+                            </h4>
+                            <p id="postulacionEstado"></p>
+                            <p id="postulacionFecha"></p>
+                            <p id="postulacionFechaActualizacion"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../../BackEnd/JS/js/api-service.js"></script>
+    <script src="../../../BackEnd/JS/js/detalle-empleo-MiPerfil.js"></script>
+</body>
+</html>
+

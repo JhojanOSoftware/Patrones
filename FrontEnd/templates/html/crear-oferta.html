@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Oferta - Ofertas App</title>
+    <link rel="stylesheet" href="/FrontEnd/Estilos/css/estilos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="page-header">
+            <h1>Crear Nueva Oferta</h1>
+            <a href="perfil-empresa.html" class="btn-back">← Volver a mi perfil</a>
+        </header>
+
+        <div class="form-container">
+            <form id="formCrearOferta">
+                <div class="form-group">
+                    <label for="titulo">Título de la oferta *</label>
+                    <input type="text" id="titulo" name="titulo" placeholder="Ej: Desarrollador Full Stack" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="empresa">Empresa *</label>
+                    <input type="text" id="empresa" name="empresa" placeholder="Nombre de la empresa" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="descripcion">Descripción *</label>
+                    <textarea id="descripcion" name="descripcion" rows="4" placeholder="Describe la oferta laboral..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="responsabilidades">Responsabilidades *</label>
+                    <textarea id="responsabilidades" name="responsabilidades" rows="4" placeholder="Lista las responsabilidades del puesto..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="requisitos">Requisitos *</label>
+                    <textarea id="requisitos" name="requisitos" rows="4" placeholder="Lista los requisitos necesarios..." required></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="modalidad">Modalidad *</label>
+                        <select id="modalidad" name="modalidad" required>
+                            <option value="">Selecciona...</option>
+                            <option value="Presencial">Presencial</option>
+                            <option value="Híbrido">Híbrido</option>
+                            <option value="Remoto">Remoto</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ubicacion">Ubicación *</label>
+                        <input type="text" id="ubicacion" name="ubicacion" placeholder="Ciudad, País" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="tipoContrato">Tipo de Contrato *</label>
+                        <select id="tipoContrato" name="tipoContrato" required>
+                            <option value="">Selecciona...</option>
+                            <option value="Termino fijo">Término fijo</option>
+                            <option value="Termino indefinido">Término indefinido</option>
+                            <option value="Obra o Labor">Obra o Labor</option>
+                            <option value="Aprendizaje">Aprendizaje</option>
+                            <option value="Prestacion de Servicios">Prestación de Servicios</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="jornada">Jornada *</label>
+                        <select id="jornada" name="jornada" required>
+                            <option value="">Selecciona...</option>
+                            <option value="Tiempo Completo">Tiempo Completo</option>
+                            <option value="Medio Tiempo">Medio Tiempo</option>
+                            <option value="Por Horas">Por Horas</option>
+                            <option value="Flexible">Flexible</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="salarioMin">Salario Mínimo ($) *</label>
+                        <input type="number" id="salarioMin" name="salarioMin" placeholder="1000" min="0" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="salarioMax">Salario Máximo ($) *</label>
+                        <input type="number" id="salarioMax" name="salarioMax" placeholder="5000" min="0" required>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Guardar Oferta</button>
+                    <button type="reset" class="btn btn-secondary">Limpiar Formulario</button>
+                </div>
+            </form>
+
+            <div id="mensaje" class="mensaje"></div>
+        </div>
+    </div>
+
+    <script src="../../../BackEnd/JS/js/api-service.js"></script>
+    <script src="../../../BackEnd/JS/js/crear-oferta.js"></script>
+</body>
+</html>

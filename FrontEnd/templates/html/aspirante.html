@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registro Aspirante - CEO</title>
+    <link rel="stylesheet" href="/FrontEnd/Estilos/css/perfiles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sql.js@1.10.2/dist/sql-wasm.js"></script>
+</head>
+
+<body>
+    <div class="page">
+        <div class="card">
+            <h2>Registro de usuario</h2>
+
+            <form id="formAspirante" novalidate>
+                <div class="field">
+                    <label>Nombre completo *</label>
+                    <input type="text" name="nombre" required />
+                </div>
+
+                <div class="field">
+                    <label>Email *</label>
+                    <input type="email" name="email" required />
+                </div>
+
+                <div class="field">
+                    <label>Contraseña *</label>
+                    <input type="password" name="password" minlength="8" required />
+                </div>
+
+                <div class="field">
+                    <label>Género</label>
+                    <select name="genero">
+                        <option value="">Selecciona…</option>
+                        <option value="M">Masculino</option>
+                        <option value="F">Femenino</option>
+                        <option value="NB">No binario</option>
+                        <option value="OTRO">Otro</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label>Discapacidad</label>
+                    <select name="discapacidad">
+                        <option value="NINGUNA">Ninguna</option>
+                        <option value="FISICA">Física</option>
+                        <option value="SENSORIAL">Sensorial</option>
+                        <option value="COGNITIVA">Cognitiva</option>
+                        <option value="OTRA">Otra</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label>Habilidades (separadas por coma)</label>
+                    <input type="text" name="habilidades" placeholder="JavaScript, SQL, ..." />
+                </div>
+
+                <div class="field">
+                    <label>CV (PDF/DOCX)</label>
+                    <input type="file" name="cv" accept=".pdf,.doc,.docx" />
+                    <small>El archivo se guardará en almacenamiento local seguro.</small>
+                </div>
+
+                <div class="actions">
+                    <button type="submit">Guardar</button>
+                    <button type="button" id="btnVolver">Volver</button>
+                </div>
+
+                <p id="msg"></p>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="./aspirante.js"></script>
+</body>
+
+</html>

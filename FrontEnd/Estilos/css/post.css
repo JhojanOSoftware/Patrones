@@ -1,0 +1,4 @@
+/* Small shim that forwards to the real post.css placed one level up */
+@import url("../post.css");
+
+/* placeholder to avoid 404 when some pages request css/post.css under css/ */

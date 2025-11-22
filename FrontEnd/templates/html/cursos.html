@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursos Disponibles - CEO</title>
+    <link rel="stylesheet" href="/FrontEnd/Estilos/css/estilos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .cursos-header {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            color: var(--color-white);
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        .cursos-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        .cursos-header p {
+            font-size: 1.125rem;
+            opacity: 0.9;
+        }
+        .cursos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .curso-card {
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--color-border);
+            transition: all var(--transition-base);
+            display: flex;
+            flex-direction: column;
+        }
+        .curso-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--color-primary);
+        }
+        .curso-header-card {
+            margin-bottom: 1.5rem;
+        }
+        .curso-card h3 {
+            color: var(--color-text);
+            margin-bottom: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+        .curso-empresa {
+            color: var(--color-primary);
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .curso-empresa i {
+            font-size: 0.875rem;
+        }
+        .curso-descripcion {
+            color: var(--color-text-light);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .curso-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+        .curso-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--color-bg-secondary);
+            border-radius: var(--radius-full);
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--color-text);
+            border: 1px solid var(--color-border);
+        }
+        .curso-badge i {
+            font-size: 0.875rem;
+        }
+        .curso-badge.nivel-basico {
+            background: #e3f2fd;
+            color: #1976d2;
+            border-color: #90caf9;
+        }
+        .curso-badge.nivel-intermedio {
+            background: #fff3e0;
+            color: #f57c00;
+            border-color: #ffb74d;
+        }
+        .curso-badge.nivel-avanzado {
+            background: #fce4ec;
+            color: #c2185b;
+            border-color: #f48fb1;
+        }
+        .curso-formatos {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .formato-tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: var(--color-white);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-full);
+            font-size: 0.75rem;
+            color: var(--color-text-light);
+        }
+        .curso-card .btn {
+            width: 100%;
+            margin-top: auto;
+        }
+        .no-cursos {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+        }
+        .no-cursos i {
+            font-size: 4rem;
+            color: var(--color-text-lighter);
+            margin-bottom: 1rem;
+        }
+        .no-cursos h3 {
+            color: var(--color-text);
+            margin-bottom: 0.5rem;
+        }
+        .no-cursos p {
+            color: var(--color-text-light);
+        }
+        .cursos-count {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: var(--color-bg-secondary);
+            border-radius: var(--radius-md);
+            color: var(--color-text);
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="cursos-header">
+            <a href="/FrontEnd/templates/html/index.html" class="btn-back" style="position: absolute; top: 1rem; left: 1rem;">
+                <i class="fas fa-arrow-left"></i> Volver al Inicio
+            </a>
+            <h1><i class="fas fa-graduation-cap"></i> Cursos Disponibles</h1>
+            <p>Amplía tus conocimientos con nuestros cursos gratuitos</p>
+        </header>
+
+        <div class="cursos-count">
+            <span id="cursosCount">Cargando cursos...</span>
+        </div>
+
+        <div id="cursosGrid" class="cursos-grid">
+            <!-- Los cursos se cargarán dinámicamente aquí -->
+        </div>
+
+        <div id="noCursos" class="no-cursos" style="display: none;">
+            <i class="fas fa-book-open"></i>
+            <h3>No hay cursos disponibles</h3>
+            <p>Próximamente agregaremos más cursos para ti.</p>
+        </div>
+    </div>
+
+    <script src="../../../BackEnd/JS/js/cursos-disponibles.js"></script>
+</body>
+</html>
+

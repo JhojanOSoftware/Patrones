@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Curso - CEO</title>
+    <link rel="stylesheet" href="/FrontEnd/Estilos/css/estilos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .curso-detalle-header {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            color: var(--color-white);
+            padding: 3rem 2rem;
+            margin-bottom: 2rem;
+            border-radius: var(--radius-lg);
+        }
+        .curso-detalle-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        .curso-detalle-header .meta-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 1rem;
+            font-size: 1rem;
+        }
+        .curso-detalle-header .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .curso-detalle-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .curso-main-content {
+            background: var(--color-white);
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+        .curso-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .curso-info-card {
+            background: var(--color-white);
+            padding: 1.5rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--color-border);
+        }
+        .curso-info-card h3 {
+            color: var(--color-text);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .curso-info-card .info-item {
+            margin-bottom: 1rem;
+        }
+        .curso-info-card .info-label {
+            font-weight: 600;
+            color: var(--color-text-light);
+            font-size: 0.875rem;
+            margin-bottom: 0.25rem;
+        }
+        .curso-info-card .info-value {
+            color: var(--color-text);
+            font-size: 1rem;
+        }
+        .curso-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--color-bg-secondary);
+            border-radius: var(--radius-full);
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--color-text);
+            border: 1px solid var(--color-border);
+        }
+        .curso-badge.nivel-basico {
+            background: #e3f2fd;
+            color: #1976d2;
+            border-color: #90caf9;
+        }
+        .curso-badge.nivel-intermedio {
+            background: #fff3e0;
+            color: #f57c00;
+            border-color: #ffb74d;
+        }
+        .curso-badge.nivel-avanzado {
+            background: #fce4ec;
+            color: #c2185b;
+            border-color: #f48fb1;
+        }
+        .curso-section {
+            margin-bottom: 2rem;
+        }
+        .curso-section h2 {
+            color: var(--color-text);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .curso-section p {
+            color: var(--color-text-light);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+        .curso-section ul, .curso-section ol {
+            color: var(--color-text-light);
+            line-height: 1.8;
+            padding-left: 1.5rem;
+        }
+        .curso-section li {
+            margin-bottom: 0.5rem;
+        }
+        .curso-formatos {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .formato-tag {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-full);
+            font-size: 0.875rem;
+            color: var(--color-text);
+            font-weight: 500;
+        }
+        .empresa-info {
+            background: var(--color-bg-secondary);
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            margin-top: 1rem;
+        }
+        .empresa-info h4 {
+            color: var(--color-text);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        .empresa-info p {
+            color: var(--color-text-light);
+            font-size: 0.875rem;
+            margin: 0.25rem 0;
+        }
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--color-white);
+            text-decoration: none;
+            margin-bottom: 1rem;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-md);
+            transition: all var(--transition-base);
+        }
+        .btn-back:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        .loading {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--color-text-light);
+        }
+        .error {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+        .error h2 {
+            color: var(--color-danger);
+            margin-bottom: 1rem;
+        }
+        .error p {
+            color: var(--color-text-light);
+            margin-bottom: 1.5rem;
+        }
+        @media (max-width: 768px) {
+            .curso-detalle-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="loading" class="loading">
+            <i class="fas fa-spinner fa-spin" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+            <p>Cargando información del curso...</p>
+        </div>
+
+        <div id="error" class="error" style="display: none;">
+            <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: var(--color-danger); margin-bottom: 1rem;"></i>
+            <h2>Error al cargar el curso</h2>
+            <p id="errorMessage"></p>
+            <a href="/FrontEnd/templates/html/cursos.html" class="btn btn-primary">
+                <i class="fas fa-arrow-left"></i> Volver a Cursos
+            </a>
+        </div>
+
+        <div id="cursoContent" style="display: none;">
+            <div class="curso-detalle-header">
+                <a href="/FrontEnd/templates/html/cursos.html" class="btn-back">
+                    <i class="fas fa-arrow-left"></i> Volver a Cursos
+                </a>
+                <h1 id="cursoTitulo"></h1>
+                <div class="meta-info">
+                    <div class="meta-item">
+                        <i class="fas fa-building"></i>
+                        <span id="cursoEmpresa"></span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-clock"></i>
+                        <span id="cursoDuracion"></span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-signal"></i>
+                        <span id="cursoNivel"></span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-calendar"></i>
+                        <span id="cursoFecha"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="curso-detalle-content">
+                <div class="curso-main-content">
+                    <div class="curso-section">
+                        <h2><i class="fas fa-info-circle"></i> Descripción</h2>
+                        <p id="cursoDescripcion"></p>
+                    </div>
+
+                    <div class="curso-section" id="cursoObjetivosSection" style="display: none;">
+                        <h2><i class="fas fa-bullseye"></i> Objetivos</h2>
+                        <div id="cursoObjetivos"></div>
+                    </div>
+
+                    <div class="curso-section" id="cursoTemarioSection" style="display: none;">
+                        <h2><i class="fas fa-list"></i> Temario</h2>
+                        <div id="cursoTemario"></div>
+                    </div>
+
+                    <div class="curso-section" id="cursoFormatosSection" style="display: none;">
+                        <h2><i class="fas fa-file-alt"></i> Formatos de Contenido</h2>
+                        <div class="curso-formatos" id="cursoFormatos"></div>
+                    </div>
+                </div>
+
+                <div class="curso-sidebar">
+                    <div class="curso-info-card">
+                        <h3><i class="fas fa-info-circle"></i> Información del Curso</h3>
+                        <div class="info-item">
+                            <div class="info-label">Nivel de Dificultad</div>
+                            <div id="infoNivel"></div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Duración Estimada</div>
+                            <div class="info-value" id="infoDuracion"></div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Fecha de Publicación</div>
+                            <div class="info-value" id="infoFecha"></div>
+                        </div>
+                        <div class="info-item" id="infoOfertaSection" style="display: none;">
+                            <div class="info-label">Oferta Asociada</div>
+                            <div class="info-value" id="infoOferta"></div>
+                        </div>
+                    </div>
+
+                    <div class="curso-info-card">
+                        <h3><i class="fas fa-building"></i> Empresa</h3>
+                        <div class="empresa-info">
+                            <h4 id="empresaNombre"></h4>
+                            <p id="empresaSector"></p>
+                            <p id="empresaDireccion"></p>
+                            <p id="empresaTelefono"></p>
+                        </div>
+                    </div>
+
+                    <div class="curso-info-card">
+                        <button class="btn btn-primary" id="btnInscribirse" style="width: 100%;">
+                            <i class="fas fa-user-plus"></i> Inscribirse al Curso
+                        </button>
+                        <p style="text-align: center; margin-top: 1rem; font-size: 0.875rem; color: var(--color-text-light);">
+                            <i class="fas fa-info-circle"></i> La inscripción estará disponible próximamente
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/BackEnd/JS/js/api-service.js"></script>
+    <script src="/BackEnd/JS/js/detalle-curso.js"></script>
+</body>
+</html>
+

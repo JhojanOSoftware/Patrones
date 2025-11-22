@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mi Perfil - CEO</title>
+
+  <!-- Iconos y estilos -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/FrontEnd/Estilos/css/perfiles.css">
+  <link rel="stylesheet" href="/FrontEnd/Estilos/css/mi-perfil.css">
+  <link rel="stylesheet" href="/FrontEnd/Estilos/css/post.css">
+  <style>
+    /* Pequeño ajuste local por si el header es fixed y empuja contenido */
+    :root {
+      --header-height: 88px;
+    }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: var(--color-bg, #f8f9fa);
+      color: var(--color-text, #2c3e50);
+    }
+    /* Si tu header en CSS está definido como position: fixed, el main usa margin-top para evitar solapamiento */
+    main.perfil-container {
+      margin-top: var(--header-height);
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="header site-header">
+    <div class="container header-inner">
+      <h1 class="logo">CEO</h1>
+      <nav class="main-nav nav" role="navigation" aria-label="Principal">
+        <a href="/Sprint1/FrontEnd/templates/html/ver-postulaciones.htmL" class="nav-link">Mis Postulaciones</a>
+        <a href="/Sprint1/FrontEnd/templates/html/buscar-empleo.html" class="nav-link">Buscar Empleos</a>
+        <a href="/Sprint1/FrontEnd/templates/html/cursos.html" class="nav-link">Buscar Cursos</a>
+        <a href="#" class="nav-link link-mi-perfil">Mi Perfil</a>
+        <button id="btn-cerrar-sesion" class="nav-link btn-cerrar-sesion" style="background: none; border: none; color: inherit; cursor: pointer; padding: 0.5rem 1rem; font-size: inherit; font-family: inherit;">
+          <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="perfil-container" id="app" aria-live="polite">
+    <!-- SIDEBAR IZQUIERDO -->
+    <aside class="perfil-sidebar" id="sidebar" aria-labelledby="perfil-title">
+      <div class="perfil-header">
+        <div class="avatar" id="avatar" aria-hidden="true">AG</div>
+        <div class="perfil-info">
+          <h2 id="display-nombre">Nombre Apellido</h2>
+          <p id="display-rol" class="perfil-rol">
+            <i class="fas fa-briefcase"></i> Buscador de empleo
+          </p>
+          <p class="perfil-location" id="display-ubicacion">
+            <i class="fas fa-map-marker-alt"></i> Bogotá, Colombia
+          </p>
+        </div>
+      </div>
+
+      <div class="perfil-habilidades" id="lista-habilidades" aria-label="Habilidades">
+        <h3 class="section-title-sidebar">
+          <i class="fas fa-tools"></i> Habilidades
+        </h3>
+        <!-- chips de habilidades insertados por JS -->
+      </div>
+
+      <div class="perfil-actions">
+        <button class="btn" id="btn-ver-cv" type="button">
+          <i class="fas fa-file-pdf"></i> Ver CV
+        </button>
+        <button class="btn primary" id="btn-editar" type="button">
+          <i class="fas fa-edit"></i> Editar perfil
+        </button>
+      </div>
+
+      <div class="divider"></div>
+
+      <div id="insignias-section" aria-labelledby="insignias-title">
+        <h3 id="insignias-title" class="section-title-sidebar">
+          <i class="fas fa-award"></i> Insignias
+        </h3>
+        <div id="insignias-list" class="insignias-container">
+          <!-- insignias dinámicas -->
+          <p class="empty-state-sidebar">No hay insignias obtenidas aún</p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <section class="perfil-content" id="contenido-principal">
+      <div class="section-header">
+        <i class="fas fa-user-circle"></i>
+        <h1 id="perfil-title">Datos Personales</h1>
+      </div>
+
+      <div class="perfil-grid" id="datos-personales" role="region" aria-labelledby="perfil-title">
+        <div class="field-card">
+          <label class="field-label">
+            <i class="fas fa-user"></i> Nombre completo
+          </label>
+          <p id="dp-nombre" class="field-value">Nombre Apellido</p>
+        </div>
+        <div class="field-card">
+          <label class="field-label">
+            <i class="fas fa-envelope"></i> Correo electrónico
+          </label>
+          <p id="dp-email" class="field-value">
+            <a href="mailto:usuario@correo.com" class="field-link">usuario@correo.com</a>
+          </p>
+        </div>
+        <div class="field-card">
+          <label class="field-label">
+            <i class="fas fa-phone"></i> Teléfono
+          </label>
+          <p id="dp-telefono" class="field-value">
+            <a href="tel:+573001234567" class="field-link">+57 300 123 4567</a>
+          </p>
+        </div>
+        <div class="field-card">
+          <label class="field-label">
+            <i class="fas fa-map-marker-alt"></i> Ubicación
+          </label>
+          <p id="dp-ubicacion" class="field-value">Bogotá, Colombia</p>
+        </div>
+        <div class="field-card">
+          <label class="field-label">
+            <i class="fas fa-venus-mars"></i> Género
+          </label>
+          <p id="dp-genero" class="field-value field-empty">No especificado</p>
+        </div>
+        <div class="field-card">
+          <label class="field-label">
+            <i class="fas fa-universal-access"></i> Condición
+          </label>
+          <p id="dp-discapacidad" class="field-value field-empty">No reportado</p>
+        </div>
+      </div>
+
+      <div class="section-header">
+        <i class="fas fa-briefcase"></i>
+        <h1>Mis Postulaciones a Empleos</h1>
+      </div>
+      <div id="postulaciones" class="perfil-list" aria-live="polite">
+        <div class="empty-state">
+          <i class="fas fa-file-alt"></i>
+          <p>Aún no has aplicado a ninguna oferta de empleo</p>
+        </div>
+        <!-- tarjetas de postulaciones -->
+      </div>
+
+      <div class="section-header">
+        <i class="fas fa-graduation-cap"></i>
+        <h1>Inscripciones a Cursos</h1>
+      </div>
+      <div id="inscripciones" class="perfil-list" aria-live="polite">
+        <div class="empty-state">
+          <i class="fas fa-book-open"></i>
+          <p>No hay inscripciones a cursos registradas</p>
+        </div>
+        <!-- tarjetas de inscripciones / progreso -->
+      </div>
+
+      <div class="section-header">
+        <i class="fas fa-briefcase"></i>
+        <h1>Experiencia Laboral</h1>
+      </div>
+      <div class="perfil-list" id="experiencias" aria-live="polite">
+        <div class="empty-state">
+          <i class="fas fa-building"></i>
+          <p>No hay experiencia laboral registrada</p>
+        </div>
+        <!-- experiencias (pueden venir del perfil o de la tabla postulaciones) -->
+      </div>
+
+      <div class="section-header">
+        <i class="fas fa-university"></i>
+        <h1>Información Académica</h1>
+      </div>
+      <div class="perfil-list" id="informacionAcademica" aria-live="polite">
+        <div class="empty-state">
+          <i class="fas fa-graduation-cap"></i>
+          <p>No hay información académica registrada</p>
+        </div>
+        <!-- Habilidades (campo de informacion de habilidades) -->
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2025 CEO Platform — Create, Educate & Organize | Promovemos inclusión y diversidad laboral
+  </footer>
+
+
+  <script src="/BackEnd/JS/js/navegacion-perfil.js"></script>
+  <script src="/BackEnd/JS/js/cerrar-sesion.js"></script>
+  <script src="/BackEnd/JS/js/mi-perfil.js"></script>
+  <script src="/BackEnd/JS/js/mi-perfil-load.js"></script>
+
+ 
+  <script>
+    localStorage.setItem("session", JSON.stringify(data.session));
+    </script>
+</body>
+</html>

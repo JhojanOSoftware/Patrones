@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmar Postulación - CEO</title>
+    <link rel="stylesheet" href="/FrontEnd/Estilos/css/estilos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .confirmacion-container {
+            max-width: 600px;
+            margin: 3rem auto;
+            padding: 2rem;
+        }
+        .confirmacion-card {
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--color-border);
+            text-align: center;
+        }
+        .confirmacion-icon {
+            font-size: 4rem;
+            color: var(--color-primary);
+            margin-bottom: 1.5rem;
+        }
+        .confirmacion-card h1 {
+            color: var(--color-text);
+            margin-bottom: 1rem;
+            font-size: 2rem;
+            font-weight: 600;
+        }
+        .confirmacion-card p {
+            color: var(--color-text-light);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+        .oferta-info {
+            background: var(--color-bg-secondary);
+            padding: 1.5rem;
+            border-radius: var(--radius-md);
+            margin: 2rem 0;
+            text-align: left;
+        }
+        .oferta-info h3 {
+            color: var(--color-text);
+            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        .oferta-info p {
+            color: var(--color-text-light);
+            margin: 0.5rem 0;
+        }
+        .botones-accion {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        .botones-accion .btn {
+            flex: 1;
+            max-width: 200px;
+        }
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: var(--color-text-light);
+        }
+        .error {
+            text-align: center;
+            padding: 2rem;
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+        .error h2 {
+            color: var(--color-danger);
+            margin-bottom: 1rem;
+        }
+        .success {
+            text-align: center;
+            padding: 2rem;
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+        .success h2 {
+            color: var(--color-success);
+            margin-bottom: 1rem;
+        }
+        .success-icon {
+            font-size: 4rem;
+            color: var(--color-success);
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="confirmacion-container">
+            <div id="loading" class="loading">
+                <i class="fas fa-spinner fa-spin" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                <p>Cargando información de la oferta...</p>
+            </div>
+
+            <div id="error" class="error" style="display: none;">
+                <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: var(--color-danger); margin-bottom: 1rem;"></i>
+                <h2>Error</h2>
+                <p id="errorMessage"></p>
+                <a href="/FrontEnd/templates/html/ofertas.html" class="btn btn-primary" style="margin-top: 1rem;">
+                    <i class="fas fa-arrow-left"></i> Volver a Ofertas
+                </a>
+            </div>
+
+            <div id="success" class="success" style="display: none;">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h2>¡Postulación Exitosa!</h2>
+                <p id="successMessage"></p>
+                <div style="margin-top: 2rem; text-align: center;">
+                    <p style="color: var(--color-text-light); font-size: 0.9rem;">
+                        <i class="fas fa-spinner fa-spin"></i> Redirigiendo a tu perfil...
+                    </p>
+                </div>
+            </div>
+
+            <div id="confirmacionCard" class="confirmacion-card" style="display: none;">
+                <div class="confirmacion-icon">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <h1>Confirmar Postulación</h1>
+                <p>¿Deseas postularte a la siguiente oferta de empleo?</p>
+                
+                <div class="oferta-info">
+                    <h3 id="ofertaTitulo"></h3>
+                    <p id="ofertaDescripcion"></p>
+                    <p><strong>Empresa:</strong> <span id="ofertaEmpresa"></span></p>
+                    <p><strong>Ubicación:</strong> <span id="ofertaUbicacion"></span></p>
+                    <p><strong>Salario:</strong> <span id="ofertaSalario"></span></p>
+                </div>
+
+                <div class="botones-accion">
+                    <button id="btnConfirmar" class="btn btn-primary">
+                        <i class="fas fa-check"></i> Sí, Postularme
+                    </button>
+                    <button id="btnCancelar" class="btn">
+                        <i class="fas fa-times"></i> Cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../../BackEnd/JS/js/api-service.js"></script>
+    <script src="../../../BackEnd/JS/js/confirmar-postulacion.js"></script>
+</body>
+</html>
+

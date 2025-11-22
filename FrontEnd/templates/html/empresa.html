@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registro Empresa - CEO</title>
+    <link rel="stylesheet" href="/FrontEnd/Estilos/css/perfiles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sql.js@1.10.2/dist/sql-wasm.js"></script>
+</head>
+
+<body>
+    <div class="page">
+        <div class="card">
+            <h2>Registro de Empresa</h2>
+
+            <form id="formEmpresa" novalidate>
+                <div class="field">
+                    <label>Nombre de contacto *</label>
+                    <input type="text" name="nombre" required />
+                </div>
+
+                <div class="field">
+                    <label>Email corporativo *</label>
+                    <input type="email" name="email" required />
+                </div>
+
+                <div class="field">
+                    <label>Contraseña *</label>
+                    <input type="password" name="password" minlength="8" required />
+                </div>
+
+                <hr />
+
+                <div class="field">
+                    <label>Nombre público de la empresa *</label>
+                    <input type="text" name="nombre_publico" required />
+                </div>
+
+                <div class="field">
+                    <label>Razón social</label>
+                    <input type="text" name="razon_social" />
+                </div>
+
+                <div class="field">
+                    <label>NIT (único) *</label>
+                    <input type="text" name="nit" required />
+                </div>
+
+                <div class="field">
+                    <label>Dirección</label>
+                    <input type="text" name="direccion" />
+                </div>
+
+                <div class="field">
+                    <label>Contacto (teléfono u otro)</label>
+                    <input type="text" name="contacto" />
+                </div>
+
+                <div class="field">
+                    <label>Redes sociales (JSON opcional)</label>
+                    <input type="text" name="redes_sociales" placeholder='Ejemplo: @CEO, #CEO' />
+                </div>
+
+                <div class="field">
+                    <label>Logo (PNG/JPG/SVG) — opcional</label>
+                    <input type="file" name="logo" accept=".png,.jpg,.jpeg,.svg" />
+                </div>
+
+                <div class="actions">
+                    <button type="submit">Registrar empresa</button>
+                    <button type="button" id="btnVolverEmp">Volver</button>
+                </div>
+
+                <p id="msgEmp"></p>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="./empresa.js"></script>
+</body>
+
+</html>
